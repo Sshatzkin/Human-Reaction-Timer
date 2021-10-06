@@ -16,6 +16,8 @@ document.addEventListener('keyup', event => {
 
     // If timer is pressed from home
     if (timerStatus == 0){
+      max_delay = 2000;
+      min_delay = 500;
       
       timerStatus = 1;
       updateHeader();
@@ -23,7 +25,7 @@ document.addEventListener('keyup', event => {
         timerStatus = 2;
         updateHeader();
         startTime = Date.now();
-      }, 2000);
+      }, Math.random() * (max_delay - min_delay) + min_delay);
     }
     // If timer is pressed during Wait...
     else if (timerStatus == 1){
@@ -48,18 +50,18 @@ document.addEventListener('keyup', event => {
 
 function updateHeader(msg = "") {
   if (timerStatus == 0){
-    titleText.innerText = "Press Space to Begin"
+    titleText.innerText = "Press Space to Begin";
   }
   else if (timerStatus == 1){
-    titleText.innerText = "Wait For it..."
+    titleText.innerText = "Wait For it...";
   }
   else if (timerStatus == 2) {
-    titleText.innerText = "Now!"
+    titleText.innerText = "Now!";
   }
   else if (timerStatus == 3){
-    titleText.innerText = "Pressed too early! Press Space to return to home."
+    titleText.innerText = "Pressed too early! Press Space to return to home.";
   }
   else if (timerStatus == 4){
-    titleText.innerText = `Your time was ${msg}. Press Space to return to home.`
+    titleText.innerText = `Your time was ${msg}. Press Space to return to home.`;
   }
 }
